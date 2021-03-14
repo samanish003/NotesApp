@@ -9,7 +9,8 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarofeditnote">
+        android:id="@+id/toolbarofeditnote"
+        android:background="@color/white">
 
 
 
@@ -20,20 +21,16 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:id="@+id/edittitleofnote">
 
-            android:id="@+id/edittitleofnote"
-            android:background="	#ADD8E6">
 
         </EditText>
-
-
-
     </androidx.appcompat.widget.Toolbar>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="15sp"
-        android:background="#B0E2FF"
+        android:background="#faf7f7"
         android:gravity="top|left"
         android:textColor="@color/black"
 
@@ -51,7 +48,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginRight="30dp"
         android:id="@+id/saveeditnote"
-        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:src="@drawable/ic_baseline_arrow_circle_up_24"
         android:background="#A1F4AB"
         app:maxImageSize="40dp"
         >

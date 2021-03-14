@@ -54,6 +54,7 @@ public class editnoteactivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
+
         msaveeditnote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,8 +70,9 @@ public class editnoteactivity extends AppCompatActivity {
                 }
                 else
                 {
-                    DocumentReference documentReference= firebaseFirestore.collection("Notes").document(firebaseUser.getUid()).collection("myNote").document(data.getStringExtra("noteId"));
-                    Map<String,Object> note = new HashMap<>();
+                    DocumentReference documentReference=firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("myNotes").document(data.getStringExtra("notedId"));
+
+                    Map<String,Object> note=new HashMap<>();
                     note.put("title", newtitle);
                     note.put("content", newcontent);
                     documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -87,26 +89,14 @@ public class editnoteactivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Failed to Update", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-
-
                 }
-
-
             }
         });
-
-
-
         String notetitle =  data.getStringExtra("title");
         String notecontent= data.getStringExtra("content");
 
         meditcontentofnote.setText(notecontent);
         medittitleofnote.setText(notetitle);
-
-
-
-
 
     }
     @Override

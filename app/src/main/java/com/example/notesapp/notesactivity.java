@@ -112,9 +112,6 @@ public class notesactivity extends AppCompatActivity {
                         intent.putExtra("content", firebasemodel.getContent());
                         intent.putExtra("notedId", docId);
 
-                        System.out.println(firebasemodel.getTitle());
-                        System.out.println(firebasemodel.getContent());
-                        System.out.println(docId);
 
                         v.getContext().startActivity(intent);
                         //  Toast.makeText(getApplicationContext(),"This i clicked", Toast.LENGTH_SHORT).show()
@@ -131,6 +128,8 @@ public class notesactivity extends AppCompatActivity {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
 
+                                System.out.println("-------->"+docId);
+
                                 Intent intent = new Intent(v.getContext(), editnoteactivity.class);
                                 intent.putExtra("title", firebasemodel.getTitle());
                                 intent.putExtra("content", firebasemodel.getContent());
@@ -143,8 +142,8 @@ public class notesactivity extends AppCompatActivity {
                         popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
+                                DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("myNotes").document(docId);
                                 //   Toast.makeText(v.getContext(),"This Notes is deleted", Toast.LENGTH_SHORT).show();
-                                DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("Mynotes").document(docId);
                                 documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -233,7 +232,7 @@ public class notesactivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        noteAdapter.stopListening();
+        noteAdapter.startListening();
 
     }
 
@@ -241,7 +240,7 @@ public class notesactivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         if (noteAdapter != null) {
-            noteAdapter.startListening();
+            noteAdapter.stopListening();
         }
 
     }
