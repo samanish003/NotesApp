@@ -182,7 +182,7 @@ public class notesactivity extends AppCompatActivity {
 
         mrecyclerview = findViewById(R.id.recyclerview);
         mrecyclerview.setHasFixedSize(true);
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         mrecyclerview.setLayoutManager(staggeredGridLayoutManager);
         mrecyclerview.setAdapter(noteAdapter);
 
